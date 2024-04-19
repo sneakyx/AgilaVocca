@@ -1,4 +1,7 @@
 {
+    "name": "agila-vocca",
+    "description": "fast and efficient vocabulary trainer",
+    "author": "André Scholz",
     "private": true,
     "type": "module",
     "scripts": {
