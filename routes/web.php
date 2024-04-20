@@ -53,11 +53,11 @@ Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('book.des
 // language routes
 Route::get('/languages', [LanguageController::class, 'index'])->name('language.index');
 Route::get('/languages/create', [LanguageController::class, 'create'])->name('language.create');
-Route::get('/languages/{id}', [LanguageController::class, 'show'])->name('language.show');
-Route::get('/languages/edit/{id}', [LanguageController::class, 'edit'])->name('language.edit');
+Route::get('/languages/{language}', [LanguageController::class, 'show'])->name('language.show');
+Route::get('/languages/edit/{language}', [LanguageController::class, 'edit'])->name('language.edit');
 Route::post('/languages', [LanguageController::class, 'store'])->name('language.store');
-Route::put('/languages/{id}', [LanguageController::class, 'update'])->name('language.update');
-Route::delete('/languages/{id}', [LanguageController::class, 'destroy'])->name('language.destroy');
+Route::put('/languages/{language}', [LanguageController::class, 'update'])->name('language.update');
+Route::delete('/languages/{language}', [LanguageController::class, 'destroy'])->name('language.destroy');
 
 // vocabulary routes
 Route::get('/vocabularies', [VocabularyController::class, 'index'])->name('vocabulary.index');

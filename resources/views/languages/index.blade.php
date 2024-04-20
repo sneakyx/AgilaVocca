@@ -3,7 +3,7 @@
 @section('content')
     <ul>
         @foreach ($languages as $language)
-            <li><a href="{{route('language.show',['id'=>$language->id])}}">{{ $language->name }}</a></li>
+            <li><a href="{{route('language.show',['language'=>$language])}}">{{ $language->name }}</a></li>
         @endforeach
     </ul>
     {{ $languages->links() }}
