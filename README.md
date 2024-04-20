@@ -1,5 +1,5 @@
 # AgilaVocca
-![Logo Agila Vocca](public/images/logo-small.png)
+![Logo Agila Vocca](public/images/logo-full-size.webp)
 <sub><sup><sub><sup>(Logo generated bei AI)</sup></sub></sub></sub>
 
 ...is a regular vocabulary learning program to show some laravel code.
