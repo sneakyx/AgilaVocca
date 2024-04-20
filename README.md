@@ -1,6 +1,8 @@
 # AgilaVocca
+![Logo Agila Vocca](public/images/logo-small.png)
+<sub><sup><sub><sup>(Logo generated bei AI)</sup></sub></sub></sub>
 
-Is a regular vocabulary learning program to show some laravel code.
+...is a regular vocabulary learning program to show some laravel code.
 
 ## history and features of a version once upon a time
 
@@ -16,5 +18,6 @@ clear and use another program if you need gamification and extrinsic motivation.
 The programm was back in time programmed with Turbo Pascal. This repository is based on Symfony.
 
 ## technics
-- Laravel
-- MariaDB
+- [Laravel](https://laravel.com/)
+- [MariaDB](https://mariadb.org/)
+- [ddev](https://ddev.readthedocs.io/en/stable/)
