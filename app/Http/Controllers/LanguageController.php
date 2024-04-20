@@ -78,6 +78,7 @@ class LanguageController extends Controller
      */
     public function destroy(Language $language)
     {
-        //
+        $language->delete();
+        return redirect()->route('language.index')->with('success', 'Language deleted successfully');
     }
 }
