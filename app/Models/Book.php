@@ -14,8 +14,14 @@ class Book extends Model
     {
         return $this->hasMany(Chapter::class);
     }
-    public function languages()
+    public function nativeLanguage()
     {
-        return $this->belongsToMany(Language::class)->withTimestamps();
+        return $this->belongsTo(Language::class, 'native_language_id');
     }
+
+    public function foreignLanguage()
+    {
+        return $this->belongsTo(Language::class, 'foreign_language_id');
+    }
+
 }

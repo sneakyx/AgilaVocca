@@ -7,17 +7,17 @@ use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
- private $validation= [[
-     'name' => 'required|string|max:255',
- ]
-     ];
+    private $validation = [
+        'name' => 'required|string|max:255',
+    ];
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $languages = Language::paginate(10);
-        return view('languages.index', ['languages' => $languages, 'headerText'=>__('general.languages')]);
+        return view('languages.index', ['languages' => $languages, 'headerText' => __('general.languages')]);
     }
 
     /**
@@ -40,7 +40,6 @@ class LanguageController extends Controller
         $language->save();
 
         return redirect()->route('language.index')->with('success', __('languages.created-new-successfully'));
-
     }
 
     /**
