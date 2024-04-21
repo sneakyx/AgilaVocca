@@ -22,6 +22,6 @@
                 @endforeach
             </select>
         </div>
-        <button type="submit">Create</button>
+        <button class="btn-agila-vocca" type="submit">Create</button>
     </form>
 @endsection
