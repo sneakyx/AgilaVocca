@@ -62,10 +62,10 @@ Route::delete('/languages/{language}', [LanguageController::class, 'destroy'])->
 // vocabulary routes
 Route::get('/vocabularies', [VocabularyController::class, 'index'])->name('vocabulary.index');
 Route::get('/vocabularies/create', [VocabularyController::class, 'create'])->name('vocabulary.create');
-Route::get('/vocabularies/{id}', [VocabularyController::class, 'show'])->name('vocabulary.show');
-Route::get('/vocabularies/edit/{id}', [VocabularyController::class, 'edit'])->name('vocabulary.edit');
+Route::get('/vocabularies/{vocabulary}', [VocabularyController::class, 'show'])->name('vocabulary.show');
+Route::get('/vocabularies/edit/{vocabulary}', [VocabularyController::class, 'edit'])->name('vocabulary.edit');
 Route::post('/vocabularies', [VocabularyController::class, 'store'])->name('vocabulary.store');
-Route::put('/vocabularies/{id}', [VocabularyController::class, 'update'])->name('vocabulary.update');
-Route::delete('/vocabularies/{id}', [VocabularyController::class, 'destroy'])->name('vocabulary.destroy');
+Route::put('/vocabularies/{vocabulary}', [VocabularyController::class, 'update'])->name('vocabulary.update');
+Route::delete('/vocabularies/{vocabulary}', [VocabularyController::class, 'destroy'])->name('vocabulary.destroy');
 
 require __DIR__ . '/auth.php';
