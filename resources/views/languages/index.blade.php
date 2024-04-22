@@ -1,8 +1,6 @@
 @extends('layouts')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">{{ __('languages.index') }}</h1>
-
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-4 grid grid-cols-auto">
             <div class="col-span-2">

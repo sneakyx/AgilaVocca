@@ -44,11 +44,11 @@ Route::delete('/chapters/{id}', [ChapterController::class, 'destroy'])->name('ch
 // book routes
 Route::get('/books', [BookController::class, 'index'])->name('book.index');
 Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
-Route::get('/books/{id}', [BookController::class, 'show'])->name('book.show');
-Route::get('/books/edit/{id}', [BookController::class, 'edit'])->name('book.edit');
+Route::get('/books/{book}', [BookController::class, 'show'])->name('book.show');
+Route::get('/books/edit/{book}', [BookController::class, 'edit'])->name('book.edit');
 Route::post('/books', [BookController::class, 'store'])->name('book.store');
-Route::put('/books/{id}', [BookController::class, 'update'])->name('book.update');
-Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('book.destroy');
+Route::put('/books/{book}', [BookController::class, 'update'])->name('book.update');
+Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('book.destroy');
 
 // language routes
 Route::get('/languages', [LanguageController::class, 'index'])->name('language.index');
