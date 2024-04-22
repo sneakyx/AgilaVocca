@@ -25,9 +25,8 @@ return new class extends Migration
         });
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('book_id')->constrained();
             $table->string('title');
+            $table->foreignId('book_id')->constrained();
             $table->timestamps();
         });
         Schema::create('vocabularies', function (Blueprint $table) {

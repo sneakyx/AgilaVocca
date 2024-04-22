@@ -35,11 +35,11 @@ Route::middleware('auth')->group(function () {
 // chapter routes
 Route::get('/chapters', [ChapterController::class, 'index'])->name('chapter.index');
 Route::get('/chapters/create', [ChapterController::class, 'create'])->name('chapter.create');
-Route::get('/chapters/{id}', [ChapterController::class, 'show'])->name('chapter.show');
-Route::get('/chapters/edit/{id}', [ChapterController::class, 'edit'])->name('chapter.edit');
+Route::get('/chapters/{chapter}', [ChapterController::class, 'show'])->name('chapter.show');
+Route::get('/chapters/edit/{chapter}', [ChapterController::class, 'edit'])->name('chapter.edit');
 Route::post('/chapters', [ChapterController::class, 'store'])->name('chapter.store');
-Route::put('/chapters/{id}', [ChapterController::class, 'update'])->name('chapter.update');
-Route::delete('/chapters/{id}', [ChapterController::class, 'destroy'])->name('chapter.destroy');
+Route::put('/chapters/{chapter}', [ChapterController::class, 'update'])->name('chapter.update');
+Route::delete('/chapters/{chapter}', [ChapterController::class, 'destroy'])->name('chapter.destroy');
 
 // book routes
 Route::get('/books', [BookController::class, 'index'])->name('book.index');
