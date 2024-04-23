@@ -21,17 +21,25 @@ class VocabularyController extends Controller
     {
         $vocabularies = Vocabulary::paginate(10);
         return view('vocabularies.index', ['vocabularies' => $vocabularies, 'headerText' => __('general.chapters')]);
-
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($chapterId = null)
     {
         $chapters = Chapter::all();
+        if ($chapterId !== null) {
+            $chapter = Chapter::find($chapterId);
+            $foreignLanguage = $chapter->book->foreignLanguage->name;
+
+            $nativeLanguage = $chapter->book->nativeLanguage->name;
+        }
         return view('vocabularies.create', [
             'chapters' => $chapters,
+            'selectedChapter' => $chapterId,
+            'foreignLanguage' => $foreignLanguage ?? __('vocabulary.foreign'),
+            'nativeLanguage' => $nativeLanguage ?? __('vocabulary.native'),
         ]);
     }
 
@@ -48,8 +56,7 @@ class VocabularyController extends Controller
         $vocabulary->chapter_id = $request->chapter_id;
         $vocabulary->save();
 
-        return redirect()->route('vocabulary.index')->with('success', __('vocabulary.created-new-successfully'));
-
+        return redirect()->route('vocabulary.create', ['chapterId' => $vocabulary->chapter_id])->with('success', __('vocabulary.created-new-successfully'));
     }
 
     /**
@@ -67,7 +74,6 @@ class VocabularyController extends Controller
     {
         $chapters = Chapter::all();
         return view('vocabularies.edit', ['vocabulary' => $vocabulary, 'chapters' => $chapters,]);
-
     }
 
     /**
@@ -83,16 +89,14 @@ class VocabularyController extends Controller
         $vocabulary->save();
 
         return redirect()->route('vocabulary.index')->with('success', 'Vocabulary updated successfully!');
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vocabulary  $vocabulary)
+    public function destroy(Vocabulary $vocabulary)
     {
         $vocabulary->delete();
         return redirect()->route('vocabulary.index')->with('success', 'Vocabulary deleted successfully');
-
     }
 }

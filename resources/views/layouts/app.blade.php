@@ -33,5 +33,14 @@
                 {{ $slot }}
             </main>
         </div>
+        <script>
+            //focus first input field on page
+            document.addEventListener("DOMContentLoaded", function() {
+                var firstInput = document.querySelector("input[type='text']");
+                if (firstInput) {
+                    firstInput.focus();
+                }
+            });
+        </script>
     </body>
 </html>
