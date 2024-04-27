@@ -15,7 +15,7 @@ Every false spelling is an error and one point is subtracted. So you can reach a
 The summary is not suitable for sensitive persons - but for persons with high intrinsic motivation - so please stand
 clear and use another program if you need gamification and extrinsic motivation.
 
-The programm was back in time programmed with Turbo Pascal. This repository is based on Symfony.
+The programm was back in time programmed with Turbo Pascal. This repository is based on Laravel.
 
 ## technics
 - [Laravel](https://laravel.com/)
