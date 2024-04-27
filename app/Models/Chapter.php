@@ -14,5 +14,8 @@ class Chapter extends Model
     {
         return $this->belongsTo(Book::class);
     }
-
+    public function vocabularies()
+    {
+        return $this->hasMany(Vocabulary::class);
+    }
 }

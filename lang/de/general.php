@@ -10,4 +10,5 @@ return [
     "book" => "Buch",
     "books" => "Bücher",
     "logged-in" => "Du bist eingeloggt - willkommen!",
+    'start-test'=>'Test starten',
 ];

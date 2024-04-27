@@ -13,6 +13,6 @@ class Vocabulary extends Model
 
     public function chapters()
     {
-        return $this->belongsToMany(Chapter::class)->withTimestamps();
+        return $this->belongsTo(Chapter::class)->withTimestamps();
     }
 }

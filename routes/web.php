@@ -5,6 +5,7 @@ use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\VocabularyController;
+use App\Http\Controllers\VocabularyTestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,5 +68,11 @@ Route::get('/vocabularies/edit/{vocabulary}', [VocabularyController::class, 'edi
 Route::post('/vocabularies', [VocabularyController::class, 'store'])->name('vocabulary.store');
 Route::put('/vocabularies/{vocabulary}', [VocabularyController::class, 'update'])->name('vocabulary.update');
 Route::delete('/vocabularies/{vocabulary}', [VocabularyController::class, 'destroy'])->name('vocabulary.destroy');
+// vocabulary test routes
+Route::get('/test-vocabularies/index/{book?}', [VocabularyTestController::class, 'index'])->name('vocabulary-test.index');
+Route::post('/test-vocabularies/prepare', [VocabularyTestController::class, 'prepare'])->name('vocabulary-test.prepare');
+Route::get('/test-vocabularies/form', [VocabularyTestController::class, 'form'])->name('vocabulary-test.form');
+Route::post('/test-vocabularies/check', [VocabularyTestController::class, 'check'])->name('vocabulary-test.check');
+Route::get('/test-vocabularies/result', [VocabularyTestController::class, 'result'])->name('vocabulary-test.result');
 
 require __DIR__ . '/auth.php';
