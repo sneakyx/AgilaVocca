@@ -13,6 +13,22 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Role management
+     */
+
+    const ROLE_PUPIL = 'pupil';
+    const ROLE_TEACHER = 'teacher';
+    const ROLE_RECTOR = 'rector';
+    const ROLE_ADMIN = 'admin';
+
+    private static $roleHierarchy = [
+        self::ROLE_PUPIL => [],
+        self::ROLE_TEACHER => [self::ROLE_PUPIL],
+        self::ROLE_RECTOR => [self::ROLE_TEACHER, self::ROLE_PUPIL],
+        self::ROLE_ADMIN => [self::ROLE_RECTOR, self::ROLE_TEACHER, self::ROLE_PUPIL],
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -21,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,4 +59,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function hasRole(string $role)
+    {
+        return $this->role === $role;
+    }
+
+    public function hasRoleOrHigher(string $role)
+    {
+        $allowedRoles = self::$roleHierarchy[$this->role] ?? [];
+        $allowedRoles[] = $this->role;
+        return in_array($role, $allowedRoles);
+    }
 }
