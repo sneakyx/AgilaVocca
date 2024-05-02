@@ -19,7 +19,7 @@ To install the project locally with DDEV, the user should follow these steps:
    - `APP_DEBUG=true`
    - `TELESCOPE_ENABLED=true`
 
-## or 1.2 Server Installation with Docker and Docker-Compose
+## or 1.2 Server Installation with Docker and Docker-Compose (files not finished yet)
 
 To install the project on a server with Docker and Docker-Compose, the user should follow these steps:
 
@@ -27,11 +27,12 @@ To install the project on a server with Docker and Docker-Compose, the user shou
    - Installation guide: https://docs.docker.com/engine/install/ 
 2. Clone the project repository on the server.
 3. Navigate to the project directory. `cd <project-directory>/docker`
-4. Run Docker-Compose to start the services. `docker-compose up -d`
-5. make sure you have something in front of this container that handels ssl-termination and support certificates
+4. First-run of this service: `docker-compose up setup` (for installation of dependencies) 
+5. When the installation is finished, use `docker-compose up app`
+6. make sure you have something in front of this container that handels ssl-termination and support certificates
 
 
-## or 1.3 Installation on a webspace without terminal access
+## or 1.3 Installation on a webspace without terminal access  (not tested)
 For installation on a webspace without terminal access, a prepared version of the project is required.
 1. Create a prepared version of the project on a local machine or server.
 2. Upload the prepared version of the project to the web space.

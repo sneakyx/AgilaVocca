@@ -20,10 +20,10 @@ The programm was back in time programmed with Turbo Pascal. This repository is b
 
 # Installation
 
-Please start with [basis installation](docu/basis-installation.md). Agila Vocca should run 
+Please start with [basic installation](docu/basic-installation.md). Agila Vocca should run 
 - locally with ddev in developer mode 
-- or with docker/docker-compose
-- or on webspace
+- or with docker/docker-compose (docker-files not finished yet)
+- or on webspace (not tested yet)
 
 After basis installation, you have to setup E-Mail-support and create an admin. 
 For this step see [initial settings](docu/initial-settings.md).
