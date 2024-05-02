@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Navigate to the Laravel application directory
-cd /path/to/laravel/application
+cd /var/www/html
 
 # Install Composer dependencies
 composer install
@@ -12,5 +12,10 @@ php artisan migrate
 # Seed the database
 php artisan db:seed
 
-# Start the Laravel application
-php artisan serve
+# install javascript/typescript stuff
+npm install
+# compile js and other stuff
+npm run build
+
+# create application key
+php artisan key:generate
