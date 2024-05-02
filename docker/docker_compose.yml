@@ -1,0 +1,90 @@
+version: '3'
+
+services:
+
+  # The Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    command: [ 'php', 'artisan', 'serve', '--host=0.0.0.0', '--port=8080' ]
+    image: agilavocca
+    container_name: agilavocca
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./storage:/var/www/storage
+    networks:
+      - agilavocca
+
+  setup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    command: [ '/start-script.sh' ]
+    image: agilavocca
+    container_name: agilavocca
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./storage:/var/www/storage
+    networks:
+      - agilavocca
+
+  # The Web Server
+  webserver:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./docker-configs/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - agilavocca
+
+  # The Database
+  db:
+    image: mariadb:10.5.8
+    container_name: mariadb
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "4306:3306"
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata-agila-vocca:/var/lib/mysql/
+      - ./docker-configs/mariadb/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - agilavocca
+
+volumes:
+  dbdata:
+    driver: local
+
+networks:
+  agilavocca:
+    driver: bridge
