@@ -24,7 +24,7 @@
                         {{$metaInfos['native_language']}}
                     @endif
                     :</label>
-                <input type="text" name="vocabulary" id="vocabulary">
+                <input type="text" name="vocabulary" id="vocabulary" autocomplete="off">
             </div>
             <button class="btn-agila-vocca" type="submit">{{__('vocabularies-test.check')}}</button>
         </form>
