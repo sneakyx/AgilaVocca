@@ -35,7 +35,13 @@ To install the project on a server with Docker and Docker-Compose, the user shou
 ## or 1.3 Installation on a webspace without terminal access  (not tested)
 For installation on a webspace without terminal access, a prepared version of the project is required.
 1. Create a prepared version of the project on a local machine or server.
-2. Upload the prepared version of the project to the web space.
-3. Use the control panel of the web host to configure the environment variables as needed.
-4. Set up database access as required by the project.
+2. ZIP the AgilaVocca-Folder
+3. Upload the ZIP-File to your webspace
+4. (when you update the project, don't zip the .env file- these are the special settings for your project!)
+5. unzip the file to the destination folder
+6. remove folders `.ddev`, `.idea`
+7. set the starting folder for your domain to `agilavocca/public`
+8. Use the control panel of the provider to configure other settings as needed
+9. Set up database access as required by the project. (TODO: Add an empty database for user)
+10. Set up everything in .env-File (TODO: explain the .env-File)
 Please note that the specific steps may vary depending on your server configuration and hosting provider.
