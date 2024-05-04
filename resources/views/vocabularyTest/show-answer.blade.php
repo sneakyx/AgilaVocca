@@ -28,9 +28,14 @@
         @else
             <p>Drücken Sie eine Taste, um umgeleitet zu werden.</p>
         @endif
+        <button class="btn-agila-vocca" id="next"> {{__('vocabularies-test.next')}}</button>
+
         <script>
 
             function redirectToRoute() {
+                @if ($howGoodWasAnswer==='correct')
+                clearInterval(countdownInterval);
+                @endif
                 window.location.href = '{{ route("vocabulary-test.form") }}';
             }
             @if ($howGoodWasAnswer==='correct')
@@ -41,16 +46,15 @@
                     secondsRemaining--;
                     countdownElement.textContent = secondsRemaining;
                     if (secondsRemaining <= 0) {
-                        clearInterval(countdownInterval);
                         redirectToRoute();
                     }
                 }, 1000);
             @endif
             // Umleitung beim Drücken einer Taste
             document.addEventListener('keydown', function () {
-                @if ($howGoodWasAnswer==='correct')
-                    clearInterval(countdownInterval);
-                @endif
+                redirectToRoute();
+            });
+            document.getElementById("next").addEventListener("click", function() {
                 redirectToRoute();
             });
         </script>
