@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -23,6 +24,27 @@ class BookController extends Controller
         $books = Book::paginate(10);
         return view('books.index', ['books' => $books, 'headerText' => __('general.books')]);
     }
+
+    public function selectStandardBook(?Book $book=null)
+    {
+        $books = Book::all();
+        if ($books->count() === 1) {
+            $book = $books[0];
+        }
+        if (empty($book)) {
+            return view('books.select-standard', [
+                'books' => $books,
+                'headerText' => 'Bitte das Buch wählen',
+            ]);
+        } else {
+            $user=Auth::user();
+            $user->standard_book_id = $book->id;
+            $user->save();
+            $route=session()->get('redirect_after_book_selection') ?? 'dashboard';
+            return redirect()->route($route);
+        }
+    }
+
 
     /**
      * Show the form for creating a new resource.

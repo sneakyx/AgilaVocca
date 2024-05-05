@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Chapter;
 use App\Models\Vocabulary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class VocabularyController extends Controller
 {
@@ -19,7 +21,14 @@ class VocabularyController extends Controller
      */
     public function index()
     {
-        $vocabularies = Vocabulary::paginate(10);
+        $user = Auth::user();
+        $book=$user->standardBook;
+        session()->put('redirect_after_book_selection', Route::currentRouteName());
+        if (empty($book)) {
+            return redirect()->route('book.select-standard');
+        }
+        $chapterIds= Chapter::where('book_id', $book->id)->pluck('id')->toArray();
+        $vocabularies = Vocabulary::whereIn('chapter_id', $chapterIds)->paginate(10);
         return view('vocabularies.index', ['vocabularies' => $vocabularies, 'headerText' => __('general.chapters')]);
     }
 

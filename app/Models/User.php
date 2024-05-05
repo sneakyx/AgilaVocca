@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
     const ROLE_RECTOR = 'rector';
     const ROLE_ADMIN = 'admin';
 
-    private static $roleHierarchy = [
+    private static array $roleHierarchy = [
         self::ROLE_PUPIL => [],
         self::ROLE_TEACHER => [self::ROLE_PUPIL],
         self::ROLE_RECTOR => [self::ROLE_TEACHER, self::ROLE_PUPIL],
@@ -38,6 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'role',
+        'standard_book_id',
     ];
 
     /**
@@ -60,15 +62,20 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
-    public function hasRole(string $role)
+    public function hasRole(string $role): bool
     {
         return $this->role === $role;
     }
 
-    public function hasRoleOrHigher(string $role)
+    public function hasRoleOrHigher(string $role): bool
     {
         $allowedRoles = self::$roleHierarchy[$this->role] ?? [];
         $allowedRoles[] = $this->role;
         return in_array($role, $allowedRoles);
+    }
+
+    public function standardBook(): ?BelongsTo
+    {
+        return $this->belongsTo(Book::class, 'standard_book_id');
     }
 }

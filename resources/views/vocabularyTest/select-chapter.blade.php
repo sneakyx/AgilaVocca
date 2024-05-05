@@ -15,5 +15,9 @@
         </form>
 
     </div>
+    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-4">
+        {{__('books.chapters',['name'=>$book->title])}}
 
+        <a href="{{ route('book.select-standard') }}" class="btn-agila-vocca">{{ __('books.change') }}</a>
+    </div>
 @endsection

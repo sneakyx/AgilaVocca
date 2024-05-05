@@ -4,6 +4,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-4">
             <a href="{{ route('vocabulary.create') }}" class="btn-agila-vocca">{{ __('vocabularies.create-new') }}</a>
+            <a href="{{ route('book.select-standard') }}" class="btn-agila-vocca">{{ __('books.change') }}</a>
         </div>
         @foreach ($vocabularies as $vocabulary)
             <div>

@@ -7,6 +7,8 @@ use App\Models\Chapter;
 use App\Models\Vocabulary;
 use Illuminate\Contracts\Queue\EntityNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class VocabularyTestController extends Controller
 {
@@ -25,25 +27,21 @@ class VocabularyTestController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(?Book $book = null)
+    public function index()
     {
-        //make choosing books easier
-        $books = Book::all();
-        if ($books->count() === 1) {
-            $book = $books[0];
-        }
+        $user = Auth::user();
+        $book = $user->standardBook;
+        session()->put('redirect_after_book_selection', Route::currentRouteName());
         if (empty($book)) {
-            return view('vocabularyTest.select-book', [
-                'books'=>$books,
-                'headerText'=>'Bitte das Buch wählen',
-            ]);
+            return redirect()->route('book.select-standard');
         } else {
             $chapters = Chapter::where('book_id', $book->id)
                 ->withCount('vocabularies')
                 ->get();
             return view('vocabularyTest.select-chapter', [
-                'chapters'=>$chapters,
-                'headerText'=>'Bitte die Kapitel wählen',
+                'chapters' => $chapters,
+                'book' => $book,
+                'headerText' => 'Bitte die Kapitel wählen',
             ]);
         }
     }
@@ -80,7 +78,7 @@ class VocabularyTestController extends Controller
         $sessionMetaInfos = session()->get('meta');
 
         // test finished?
-        if (count($vocabularyIdsSession)===0){
+        if (count($vocabularyIdsSession) === 0) {
             return redirect()->route('vocabulary-test.result');
         }
 
@@ -147,11 +145,10 @@ class VocabularyTestController extends Controller
 
     public function result()
     {
-
         $metaInfos = session()->get('meta');
         return view('vocabularyTest.finished', [
             'headerText' => __('Test beendet'),
-            'percentage' => 100 - ( $metaInfos['incorrect']/ $metaInfos['total']) * 100,
+            'percentage' => 100 - ($metaInfos['incorrect'] / $metaInfos['total']) * 100,
             'metaInfos' => $metaInfos,
         ]);
     }
