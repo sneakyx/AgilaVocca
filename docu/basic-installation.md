@@ -32,7 +32,7 @@ To install the project on a server with Docker and Docker-Compose, the user shou
 6. make sure you have something in front of this container that handels ssl-termination and support certificates
 
 
-## or 1.3 Installation on a webspace without terminal access  (not tested)
+## or 1.3 Installation on a webspace without terminal access
 For installation on a webspace without terminal access, a prepared version of the project is required.
 1. Create a prepared version of the project on a local machine or server.
 2. ZIP the AgilaVocca-Folder

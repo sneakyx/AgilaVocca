@@ -19,7 +19,7 @@ MAIL_FROM_ADDRESS="hello@example.com"
 MAIL_FROM_NAME="${APP_NAME}"
 ```
 Please take a look at Your E-Mail-provider-settings for the right things to fill in. 
-If possible, use encryption and don#t use your private email-address, use an extra address.
+If possible, use encryption and don't use your private email-address, use an extra address.
 
 If you set up everything correct, the login process works that way:
 When a user clicks "register" and fills out the form (and sends it), an email is sent to the given address.
@@ -52,4 +52,4 @@ There are two ways to do that:
   - `UPDATE users SET role='admin' WHERE email='the-user@e-mail.com;`
 
 
-If the user was logged in, he has to log out and login again.
+If the user was logged in, he/she has to reload the page.
