@@ -12,13 +12,13 @@
                 @else
                     Die Antwort war komplett falsch!
                 @endif
-                <br>
+                <hr>
                 @if ($metaInfos['test_foreign'])
-                    {{$vocabulary->native}} heisst auf {{$metaInfos['foreign_language']}}: {{$vocabulary->foreign}}
+                        <b>{{$vocabulary->native}}</b> heisst auf {{$metaInfos['foreign_language']}}: <b>{{$vocabulary->foreign}}</b>
                 @else
-                    {{$vocabulary->foreign}} heisst auf {{$metaInfos['native_language']}}: {{$vocabulary->native}}
+                        <b>{{$vocabulary->foreign}}</b> heisst auf {{$metaInfos['native_language']}}: <b>{{$vocabulary->native}}</b>
                 @endif
-                 - Deine Eingabe war: {{$phraseFromUser}}
+                 - Deine Eingabe war: <span style="color: darkred;"> {{$phraseFromUser}}</span>
             @endif
 
         </div>
