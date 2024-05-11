@@ -9,6 +9,7 @@
             <div>
                 Bisher richtig: {{$metaInfos['correct']}} von {{$metaInfos['total']}}. Fehler: {{$metaInfos['incorrect']}} - Vokabel Nummer: {{$vocabulary->id}}
             </div>
+            <hr>
             <div>
                 @if ($metaInfos['test_foreign'])
                 {{$metaInfos['native_language']}}: {{$vocabulary->native}}

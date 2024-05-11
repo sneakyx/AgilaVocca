@@ -72,10 +72,11 @@ Route::middleware(['role:rector'])->group(function () {
 });
 Route::middleware(['role:pupil'])->group(function () {
 // vocabulary test routes
-    Route::get('/test-vocabularies/index/{book?}', [VocabularyTestController::class, 'index'])->name('vocabulary-test.index');
+    Route::get('/test-vocabularies/index', [VocabularyTestController::class, 'index'])->name('vocabulary-test.index');
     Route::post('/test-vocabularies/prepare', [VocabularyTestController::class, 'prepare'])->name('vocabulary-test.prepare');
     Route::get('/test-vocabularies/form', [VocabularyTestController::class, 'form'])->name('vocabulary-test.form');
     Route::post('/test-vocabularies/check', [VocabularyTestController::class, 'check'])->name('vocabulary-test.check');
     Route::get('/test-vocabularies/result', [VocabularyTestController::class, 'result'])->name('vocabulary-test.result');
+    Route::get('/book/select-standard/{book?}', [BookController::class, 'selectStandardBook'])->name('book.select-standard');
 });
 require __DIR__ . '/auth.php';
