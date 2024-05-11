@@ -21,8 +21,11 @@
             <div>
                 <label for="chapter_id">{{__('chapter.id')}}</label>
                 <select name="chapter_id" id="chapter_id">
-                    {{dump($chapters)}}
-
+                    @foreach ($chapters as $chapter)
+                        <option value="{{ $chapter->id }}" {{ $chapter->id == $vocabulary->$chapter->id ? 'selected' : '' }}>
+                            {{ $chapter->name }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
 
