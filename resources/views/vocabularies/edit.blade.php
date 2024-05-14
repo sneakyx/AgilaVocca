@@ -22,8 +22,8 @@
                 <label for="chapter_id">{{__('chapter.id')}}</label>
                 <select name="chapter_id" id="chapter_id">
                     @foreach ($chapters as $chapter)
-                        <option value="{{ $chapter->id }}" {{ $chapter->id == $vocabulary->$chapter->id ? 'selected' : '' }}>
-                            {{ $chapter->name }}
+                        <option value="{{ $chapter->id }}" {{ $chapter->id == $vocabulary->chapter->id ? 'selected' : '' }}>
+                            {{$chapter->book->title}} - {{ $chapter->title }}
                         </option>
                     @endforeach
                 </select>

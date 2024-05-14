@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Vocabulary extends Model
 {
@@ -11,8 +12,8 @@ class Vocabulary extends Model
 
     protected $fillable = ['foreign', 'native'];
 
-    public function chapters()
+    public function chapter(): BelongsTo
     {
-        return $this->belongsTo(Chapter::class)->withTimestamps();
+        return $this->belongsTo(Chapter::class);
     }
 }
