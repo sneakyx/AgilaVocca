@@ -33,12 +33,62 @@ For this step see [initial settings](docu/initial-settings.md).
 Let me explain the data structure:
 
 Every Vocabulary belongs to a chapter. Every Chapter belongs to a book. 
-Every book has to two languages: the foreign language and the native language.
+Every book has two languages: the foreign language and the native language.
 
 As admin (or rector) you have to create languages (minimum 2). 
 The next step would be the creation of a book. After that you can create chapters.
 
 The last step is creating vocabularies.
+
+
+# Artisan Commands for Import/Export
+
+AgilaVocca provides Artisan commands for importing and exporting vocabularies in JSON or JSON-Newline format.
+
+## Export Vocabularies
+
+Export vocabularies from a book or lesson:
+
+```bash
+# Export a book to JSON
+php artisan vocab:export --book=1 --file=vocab.json --format=json
+
+# Export a lesson to JSON-Newline
+php artisan vocab:export --lesson=1 --file=vocab.jsonl --format=json-newline
+```
+
+**Options:**
+- `--book`: ID of the book to export.
+- `--lesson`: ID of the lesson to export.
+- `--file`: Path to the output file (default: stdout).
+- `--format`: Output format (`json` or `json-newline`).
+
+
+## Import Vocabularies
+
+Import vocabularies into a book or lesson:
+
+```bash
+# Import into a new book
+php artisan vocab:import --file=vocab.json --new-book --format=json
+
+# Import into an existing lesson (add to existing vocabularies)
+php artisan vocab:import --file=vocab.jsonl --lesson=1 --format=json-newline
+
+# Import with dry-run (simulate without changes)
+php artisan vocab:import --file=vocab.json --book=1 --dry-run
+```
+
+**Options:**
+- `--file`: Path to the input file (required).
+- `--book`: ID of the existing book to import into.
+- `--lesson`: ID of the existing lesson to import into.
+- `--new-book`: Create a new book.
+- `--new-lesson`: Create a new lesson.
+- `--clear-book`: Clear the book before importing.
+- `--clear-lesson`: Clear the lesson before importing.
+- `--dry-run`: Simulate the import without making changes.
+- `--format`: Input format (`json` or `json-newline`).
 
 
 ## technics
