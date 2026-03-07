@@ -10,6 +10,7 @@ class Language extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'slug',
     ];
 
     public function native()
