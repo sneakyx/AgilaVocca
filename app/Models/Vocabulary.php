@@ -4,16 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Vocabulary extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['foreign', 'native'];
+    protected $fillable = [
+        'lesson_id',
+        'word',
+        'native',
+        'foreign',
+        'chapter_id'
+    ];
 
-    public function chapter(): BelongsTo
+    public function lesson()
     {
-        return $this->belongsTo(Chapter::class);
+        return $this->belongsTo(Lesson::class);
+    }
+
+    public function translations()
+    {
+        return $this->hasMany(Translation::class);
     }
 }

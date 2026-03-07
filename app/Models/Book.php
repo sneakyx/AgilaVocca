@@ -10,7 +10,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Book extends Model
 {
     use HasFactory;
-    protected $fillable = ['title'];
+    protected $fillable = [
+        'title',
+        'native_language_id',
+        'foreign_language_id'
+    ];
 
     public function chapters(): HasMany
     {
