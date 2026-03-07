@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\VocabExportCommand;
+use App\Console\Commands\VocabImportCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,9 +26,9 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
-    
+
     protected $commands = [
-        \App\Console\Commands\VocabExportCommand::class,
-        \App\Console\Commands\VocabImportCommand::class,
+        VocabExportCommand::class,
+        VocabImportCommand::class,
     ];
 }

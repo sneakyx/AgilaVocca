@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Translation extends Model
 {
     use HasFactory;
-    
-    protected $fillable = ['vocabulary_id', 'translation'];
-    
+
+    protected $fillable = [
+        'vocabulary_id',
+        'translation'
+    ];
+
     public function vocabulary()
     {
         return $this->belongsTo(Vocabulary::class);

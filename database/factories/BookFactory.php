@@ -2,19 +2,20 @@
 
 namespace Database\Factories;
 
+use App\Models\Language;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Book;
 
 class BookFactory extends Factory
 {
     protected $model = Book::class;
-    
+
     public function definition()
     {
         return [
             'title' => $this->faker->word,
-            'foreign_language_id' => \App\Models\Language::factory(),
-            'native_language_id' => \App\Models\Language::factory(),
+            'foreign_language_id' => Language::factory(),
+            'native_language_id' => Language::factory(),
         ];
     }
 }
