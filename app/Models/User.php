@@ -40,6 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'role',
         'standard_book_id',
+        'native_language',
     ];
 
     /**
