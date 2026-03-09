@@ -31,6 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Language settings
+    Route::get('/settings/language', function () {
+        return view('test_language');
+    })->name('language.edit');
+    Route::put('/settings/language', [LanguageController::class, 'update'])->name('language.update');
 });
 Route::middleware(['role:teacher'])->group(function () {
 // chapter routes
@@ -65,9 +71,9 @@ Route::middleware(['role:rector'])->group(function () {
     Route::get('/languages', [LanguageController::class, 'index'])->name('language.index');
     Route::get('/languages/create', [LanguageController::class, 'create'])->name('language.create');
     Route::get('/languages/{language}', [LanguageController::class, 'show'])->name('language.show');
-    Route::get('/languages/edit/{language}', [LanguageController::class, 'edit'])->name('language.edit');
+    Route::get('/languages/edit/{language}', [LanguageController::class, 'editLanguage'])->name('language.edit');
     Route::post('/languages', [LanguageController::class, 'store'])->name('language.store');
-    Route::put('/languages/{language}', [LanguageController::class, 'update'])->name('language.update');
+    Route::put('/languages/{language}', [LanguageController::class, 'updateLanguage'])->name('language.update');
     Route::delete('/languages/{language}', [LanguageController::class, 'destroy'])->name('language.destroy');
 });
 Route::middleware(['role:pupil'])->group(function () {

@@ -51,9 +51,42 @@ class LanguageController extends Controller
     }
 
     /**
+     * Show the form for editing the user's language preference.
+     */
+    public function edit()
+    {
+        $languages = [
+            'de' => 'Deutsch',
+            'en' => 'English',
+            'fr' => 'Français',
+            'es' => 'Español',
+        ];
+        return view('settings.language', ['languages' => $languages]);
+    }
+
+    /**
+     * Update the user's language preference.
+     */
+    public function update(Request $request)
+    {
+        $request->validate([
+            'native_language' => 'required|string|in:de,en,fr,es',
+        ]);
+
+        $user = $request->user();
+        $user->native_language = $request->input('native_language');
+        $user->save();
+
+        // Sprache in Session speichern
+        $request->session()->put('locale', $request->input('native_language'));
+
+        return redirect()->back()->with('success', __('settings.language-updated-successfully'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Language $language)
+    public function editLanguage(Language $language)
     {
         return view('languages.edit', compact('language'));
     }
@@ -61,7 +94,7 @@ class LanguageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Language $language)
+    public function updateLanguage(Request $request, Language $language)
     {
         $request->validate($this->validation);
 
@@ -69,7 +102,7 @@ class LanguageController extends Controller
             'name' => $request->input('name'),
         ]);
 
-        return redirect()->route('language.index')->with('success', 'Language updated successfully!');
+        return redirect()->route('language.index')->with('success', __('languages.updated-successfully'));
     }
 
     /**
