@@ -14,7 +14,6 @@ AgilaVocca supports multiple languages for the user interface. Users can select 
 3. Update the `LanguageController` to include the new language in the selection.
 
 ---
-# AgilaVocca
 
 ![Logo Agila Vocca](public/images/logo-full-size.webp)
 <sub><sup><sub><sup>(Logo generated bei AI)</sup></sub></sub></sub>
