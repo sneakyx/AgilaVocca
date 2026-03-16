@@ -14,10 +14,9 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ url('/settings/language') }}">
+                    <form method="POST" action="{{ route('language.update') }}">
                         @method('PUT')
                         @csrf
-                        @method('PUT')
 
                         <div class="form-group row">
                             <label for="native_language" class="col-md-4 col-form-label text-md-right">
