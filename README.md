@@ -1,4 +1,19 @@
-# AgilaVocca
+## Multilingual Support
+
+AgilaVocca supports multiple languages for the user interface. Users can select their preferred language in the settings.
+
+### Supported Languages
+- English (en)
+- Deutsch (de)
+- Français (fr)
+- Español (es)
+
+### Adding a New Language
+1. Create a new language file in `resources/lang/<code>/` (e.g., `resources/lang/it/general.php`).
+2. Add translations for all keys in `general.php`, `messages.php`, and `settings.php`.
+3. Update the `LanguageController` to include the new language in the selection.
+
+---
 
 ![Logo Agila Vocca](public/images/logo-full-size.webp)
 <sub><sup><sub><sup>(Logo generated bei AI)</sup></sub></sub></sub>

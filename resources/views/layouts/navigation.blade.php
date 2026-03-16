@@ -7,8 +7,8 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <div class="flex justify-center items-center">
-                            <img src="{{ asset('images/logo-small.png') }}" alt="Agila Vocca Logo" style="height: 3rem;">
-                            Agila Vocca
+                            <img src="{{ asset('images/logo-small.png') }}" alt="@lang('messages.app_name') Logo" style="height: 3rem;">
+                            @lang('messages.app_name')
                         </div>
                     </a>
                 </div>
