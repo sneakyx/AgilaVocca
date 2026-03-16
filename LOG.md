@@ -3,25 +3,30 @@
 ## 07.03.2026
 
 ### **Umgesetzte Akzeptanzkriterien**
-- [x] **Sprachdateien angelegt** (`resources/lang/{de,en,fr,es}/messages.php` + `general.php`).
+- [x] **Sprachdateien angelegt** (`resources/lang/{de,en,fr,es}/messages.php` + `general.php` + `settings.php`).
 - [x] **Hartcodierte Strings in Blade-Templates ersetzt** (z. B. `navigation.blade.php`, `dashboard.blade.php`).
+- [x] **User-Modell erweitert** (`native_language`-Feld + Migration).
+- [x] **Einstellungen-Seite erstellt** (Sprachauswahl).
+- [x] **Tests geschrieben** (Nutzer kann Sprache ändern, Validierung, Middleware).
+- [x] **Dokumentation ergänzt** (`README.md`).
 
 ### **Aktueller Stand**
-- [ ] **User-Modell erweitern** (`native_language`-Feld).
-- [ ] **Einstellungen-Seite erstellen** (Sprachauswahl).
-- [ ] **Tests schreiben** (Nutzer kann Sprache ändern).
-- [ ] **Dokumentation ergänzen** (`README.md`).
+- Alle Akzeptanzkriterien sind erfüllt.
+- Code wurde bereinigt und Tests erweitert.
 
 ### **Nächste Schritte**
-1. **Migration für `native_language` erstellen** (String-Feld, max. 5 Zeichen, z. B. `"de"`).
-2. **User-Modell anpassen** (`$fillable` + ggf. Accessor/Mutator).
-3. **Einstellungen-Seite** (Route, Controller, Blade-View).
-4. **Sprache in Session speichern** (Middleware oder Controller).
-5. **Tests für Sprachwechsel** (Feature-Tests).
-6. **Dokumentation in `README.md`** (Kapitel "Adding new application languages").
+- Pull Request reviewen und mergen.
 
 ### **Probleme & Lösungen**
-- **Problem:** Einige Blade-Templates nutzen bereits `__('key')`, aber die Sprachdateien fehlten.
-  **Lösung:** Sprachdateien `general.php` für alle Sprachen angelegt.
-- **Problem:** Dynamische Strings (z. B. `"Welcome, :name!")` erfordern Platzhalter.
+- **Problem:** Einige Blade-Templates nutzten bereits `__('key')`, aber die Sprachdateien fehlten.
+  **Lösung:** Sprachdateien `general.php`, `messages.php`, `settings.php` für alle Sprachen angelegt.
+- **Problem:** Dynamische Strings (z. B. "Welcome, :name!") erfordern Platzhalter.
   **Lösung:** `@lang('messages.welcome', ['name' => $user->name])` verwendet.
+- **Problem:** Duplizierter Code in Controller und Routes.
+  **Lösung:** Bereinigt und konsolidiert.
+
+### **Hinweise für neue Sprachen**
+1. Neue Sprachdateien in `resources/lang/<code>/` anlegen (z. B. `it/general.php`).
+2. Alle Keys in `general.php`, `messages.php`, `settings.php` übersetzen.
+3. Validierung in `LanguageController@update` anpassen, falls neue Sprachcodes hinzugefügt werden.
+4. Dokumentation in `README.md` aktualisieren.
